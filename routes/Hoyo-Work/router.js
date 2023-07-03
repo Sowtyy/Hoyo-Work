@@ -86,9 +86,13 @@ async function sendDiscordMessage(messageObj, url) {
 
 async function processGenshinWork(fireDate) {
   try {
+    myLog("Try processGenshinWork.");
+
     const db_wrapper = new MongoWrapper(process.env.MONGODB_KEY, "swty-db", "swty-coll-work");
     
     const workDetails = await db_wrapper.find_one_by_id("genshin");
+
+    myLog(workDetails);
 
     if (!workDetails.active) return;
 
